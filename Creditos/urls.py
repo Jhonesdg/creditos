@@ -16,12 +16,19 @@ Including another URLconf
 from django.contrib import admin
 from django.conf.urls import  url, include
 from solicitudes.views import CreditRequestList, IndexView
+from usuarios.views import ObtainAuthToken,ClientRegister
+from django.views.decorators.csrf import csrf_exempt
 
 solicitudes_urls = [
     url(r'^$', CreditRequestList.as_view(), name='user-list')
 ]
+usuarios_urls = [
+    url(r'^/register', ClientRegister.as_view(), name='user-list')
+]
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', IndexView.as_view(), name='index'),
+    url(r'^api_login/$', csrf_exempt(ObtainAuthToken.as_view()), name='api_login'),
     url(r'^solicitudes', include(solicitudes_urls)),
+    url(r'^usuarios', include(usuarios_urls)),
 ]

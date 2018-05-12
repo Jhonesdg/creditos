@@ -7,6 +7,7 @@ class Consultant(User):
         return str(self.first_name)
 
 class Client(User):
+    USERNAME_FIELD = 'email'
     def __str__(self):
         return str(self.first_name)
 

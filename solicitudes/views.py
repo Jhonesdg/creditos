@@ -6,7 +6,7 @@ from .serializers import CreditRequestSerializer
 from .models import CreditRequest
 # Create your views here.
 
-class IndexView(LoginRequiredMixin, TemplateView):
+class IndexView(TemplateView):
     template_name = 'index.html'
 
 
