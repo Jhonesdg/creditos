@@ -18,3 +18,20 @@ class CreditRequestList(generics.ListCreateAPIView):
         permissions.AllowAny
     ]
 
+class CreditRequestUserList(generics.ListAPIView):
+    model = CreditRequest
+    queryset = CreditRequest.objects.all()
+    serializer_class = CreditRequestSerializer
+
+    def get_queryset(self):
+        queryset = super(CreditRequestUserList, self).get_queryset()
+        return queryset.filter(client__pk=self.kwargs.get('pk'))
+
+
+
+
+class CreditRequestDetail(generics.RetrieveAPIView):
+    model = CreditRequest
+    queryset = CreditRequest.objects.all()
+    serializer_class = CreditRequestSerializer
+    lookup_field = 'pk'

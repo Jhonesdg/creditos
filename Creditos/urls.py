@@ -15,12 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.conf.urls import  url, include
-from solicitudes.views import CreditRequestList, IndexView
+from solicitudes.views import CreditRequestList, IndexView,CreditRequestUserList,CreditRequestDetail
 from usuarios.views import ObtainAuthToken,ClientRegister
 from django.views.decorators.csrf import csrf_exempt
 
 solicitudes_urls = [
-    url(r'^$', CreditRequestList.as_view(), name='user-list')
+    url(r'^/(?P<pk>[0-9a-zA-Z_-]+)/solicitudes', CreditRequestUserList.as_view(), name='credit-request-list'),
+    url(r'^/(?P<pk>[0-9a-zA-Z_-]+)$', CreditRequestDetail.as_view(), name='credit-request-detail'),
+    url(r'^$', CreditRequestList.as_view(), name='credit-request-list')
+
 ]
 usuarios_urls = [
     url(r'^/register', ClientRegister.as_view(), name='user-list')

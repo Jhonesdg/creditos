@@ -2,7 +2,6 @@
 <html>
     <head>
     <link rel="stylesheet"  href="{% static "css/bootstrap.min.css" %}">
-    <link rel="stylesheet"  href="{% static "css/custom.css" %}">
     <title>Sistema Crediticio</title>
   </head>
 
@@ -10,36 +9,18 @@
 
     <div ng-cloak class="form-signin" ng-controller="{% block ng_controller %}AppController{% endblock %}">{% block content %}
         {% verbatim %}
-      <div ng-show="!register">
-        <h1 class="h3 mb-3 font-weight-normal">Inicia Sesión</h1>
-      <label for="inputEmail" class="sr-only">Correo Electronico</label>
-      <input type="email" ng-model="username" id="inputEmail" class="form-control" placeholder="Correo Electronico" required="" autofocus="">
-      <label for="inputPassword" class="sr-only">Clave</label>
-      <input type="password" id="inputPassword" ng-model="password" class="form-control" placeholder="Clave" required="">
 
-      <button ng-click="login()" class="btn btn-lg btn-primary btn-block" >Iniciar sesión</button>
-        <a ng-click="seeRegister()">Registrese aqui</a>
-      <p class="mt-5 mb-3 text-muted">© Useit Web Derechos reservados</p>
-    </div>
-        <div ng-show="register">
-        <h1 class="h3 mb-3 font-weight-normal">Registro</h1>
-        <label  class="sr-only">Correo Electronico</label>
-      <input type="email" ng-model="email"  class="form-control" placeholder="Correo Electronico" required="" autofocus="">
-      <label class="sr-only">Contraseña</label>
-      <input type="password"  ng-model="password1" class="form-control" placeholder="Clave" required="">
-        <label class="sr-only">Primer Nombre</label>
-      <input type="input"  ng-model="first_name" class="form-control" placeholder="Primer nombre" required="">
-        <label class="sr-only">Apellidos</label>
-      <input type="input"  ng-model="last_name" class="form-control" placeholder="Apellido" required="">
-    <button ng-click="register()" class="btn btn-lg btn-primary btn-block" >Registrarse</button>
-            <a ng-click="seeRegister()">Loguin</a>
-      <p class="mt-5 mb-3 text-muted">© Useit Web Derechos reservados</p>
-    </div>
+      <login></login>
+
         </div>
+        <dashboard ng-if="login"></dashboard>
 
-    {% endverbatim %}
+        {% endverbatim %}
   {% endblock %}
 <script src="{% static "js/angular.min.js" %}"></script>
+    <script src="{% static "js/angular-resource.min.js" %}"></script>
+    <script src="{% static "js/ngStorage.min.js" %}"></script>
+
     <script src="{% static "js/creditos.js" %}"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </body></html>
