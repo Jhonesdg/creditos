@@ -9,13 +9,13 @@
 
   <div style="width: 100%;" ng-controller="{% block ng_controller %}AppController{% endblock %}">
 
-    <div ng-show="!login"ng-cloak class="form-signin" >{% block content %}
+    <div ng-if="!login" ng-cloak class="form-signin" >{% block content %}
         {% verbatim %}
 
-      <login></login>
+      <login ng-cloak ></login>
 
         </div>
-        <dashboard ng-show="login"></dashboard>
+        <dashboard ng-cloak ng-if="login"></dashboard>
 
         {% endverbatim %}
         </div>

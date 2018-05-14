@@ -20,10 +20,11 @@ class CreditRequest(models.Model):
         (36, 36),
     )
     STATUS = (
-        (0, "Creada"),
-        (1, "Evaluada"),
+        (0, "En Estudio"),
+        (1, "Pendiente Aprobación"),
         (2, "Aprobada"),
         (3, "Rechazada"),
+        (4, "Cancelada"),
     )
     client = models.ForeignKey(Client, verbose_name="Cliente", null=False, blank=False)
     amount = models.CharField(max_length=255, verbose_name="Monto", null=False, blank=False)

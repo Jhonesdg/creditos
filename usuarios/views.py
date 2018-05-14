@@ -7,7 +7,8 @@ from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.views.decorators.csrf import csrf_exempt
-from usuarios.serializers import CustomLoginSerializer,ClientRegisterSerializer
+from usuarios.serializers import CustomLoginSerializer, ClientRegisterSerializer, ConsultantRegisterSerializer
+from usuarios.utils import role_user
 from .models import Client
 from rest_framework.generics import CreateAPIView
 
@@ -29,6 +30,7 @@ class ObtainAuthToken(APIView):
             'nombre': user.first_name,
             'apellido': user.last_name,
             'username': user.username,
+            'role': role_user(user.username)
         }
         context['user'] = user_data
 
@@ -44,3 +46,11 @@ class ClientRegister(CreateAPIView):
         instance.set_password(instance.password)
         instance.save()
 
+
+class ConsultantRegister(CreateAPIView):
+    serializer_class = ConsultantRegisterSerializer
+
+    def perform_create(self, serializer):
+        instance = serializer.save()
+        instance.set_password(instance.password)
+        instance.save()
