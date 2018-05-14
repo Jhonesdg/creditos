@@ -7,15 +7,18 @@
 
   <body ng-app="{% block ng_app %}Creditos{% endblock %}" class="text-center">
 
-    <div ng-cloak class="form-signin" ng-controller="{% block ng_controller %}AppController{% endblock %}">{% block content %}
+  <div style="width: 100%;" ng-controller="{% block ng_controller %}AppController{% endblock %}">
+
+    <div ng-show="!login"ng-cloak class="form-signin" >{% block content %}
         {% verbatim %}
 
       <login></login>
 
         </div>
-        <dashboard ng-if="login"></dashboard>
+        <dashboard ng-show="login"></dashboard>
 
         {% endverbatim %}
+        </div>
   {% endblock %}
 <script src="{% static "js/angular.min.js" %}"></script>
     <script src="{% static "js/angular-resource.min.js" %}"></script>

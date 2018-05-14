@@ -1,7 +1,10 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render
+from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import TemplateView
 from rest_framework import generics, permissions
+from rest_framework.generics import UpdateAPIView
+
 from .serializers import CreditRequestSerializer
 from .models import CreditRequest
 # Create your views here.
@@ -29,9 +32,7 @@ class CreditRequestUserList(generics.ListAPIView):
 
 
 
-
-class CreditRequestDetail(generics.RetrieveAPIView):
-    model = CreditRequest
+class CreditRequestDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = CreditRequest.objects.all()
     serializer_class = CreditRequestSerializer
-    lookup_field = 'pk'
+

@@ -28,6 +28,7 @@ class ObtainAuthToken(APIView):
             'id': user.id,
             'nombre': user.first_name,
             'apellido': user.last_name,
+            'username': user.username,
         }
         context['user'] = user_data
 
